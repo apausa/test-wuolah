@@ -1,3 +1,14 @@
-const getUniversidades = () => fetch('https://www.api.wuolah.com/v2/universities').then((res) => res.json());
+import axios from 'axios';
+import { Response, University } from '../types/universidades.types';
+import endpoints from '../utils/endpoints';
 
-export default getUniversidades;
+const getUniversities = async (): Promise<University[] | unknown> => {
+  try {
+    const { data }: Response = await axios.get(endpoints.UNIVERSITIES);
+    return data;
+  } catch (error: unknown) {
+    return error;
+  }
+};
+
+export default getUniversities;
