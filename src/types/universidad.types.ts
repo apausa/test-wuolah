@@ -14,5 +14,3 @@ export interface Response {
     total?: number;
   }
 }
-
-// https://www.api.wuolah.com/v2/universities
