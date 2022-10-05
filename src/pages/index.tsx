@@ -1,18 +1,10 @@
 import React from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
+import { NextPage } from 'next/types';
 
-const Home: NextPage = () => (
-  <>
-    <Head>
-      <title>Wuolah test</title>
-      <meta name="description" content="Wuolah test" />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <main>
-      Index component
-    </main>
-  </>
+const Universidades: NextPage = () => (
+  <main>
+    Index component
+  </main>
 );
 
-export default Home;
+export default Universidades;
