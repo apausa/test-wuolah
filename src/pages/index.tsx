@@ -2,7 +2,6 @@ import React from 'react';
 import { NextPage } from 'next/types';
 import {
   useQuery,
-  useMutation,
   useQueryClient,
   QueryClient,
   UseQueryResult,
@@ -11,18 +10,18 @@ import getUniversidades from '../services/universidad.service';
 import Loading from '../components/loading';
 
 const UniversidadesPage: NextPage = () => {
-  const queryClient: QueryClient = useQueryClient();
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isLoading, isError, data, error,
   }: UseQueryResult = useQuery(['universidades'], getUniversidades);
 
   if (isLoading) return (<Loading />);
-  if (isError) return (<p>{error}</p>); // @todo redirect, send error obejct
+  if (isError) return (<p>Error</p>); // @todo redirect, send error obejct
 
   return (
     <main>
       Universidades component
-      <p>{{ data }}</p>
+      <p>Data</p>
     </main>
   );
 };
