@@ -1,19 +1,22 @@
 import axios from 'axios';
 
 // Types
-import { IResponse, IQueryParams, IUniversity } from '../types/universities.types';
+import { IQueryParams } from '../types/universities.types';
 
 // Constants
 import routes from '../utils/endpoints';
 
-const getUniversities = async (): Promise<IUniversity[] | null> => {
+const getUniversities = async (pageParam: number): Promise<any> => {
   try {
-    const queryParams: IQueryParams = { pagination: { withCount: true, page: 0, pageSize: 10 }, sort: 'name' };
-    const { data }: IResponse = await axios.get(routes.UNIVERSITIES, { params: queryParams });
+    const queryParams: IQueryParams = { pagination: { withCount: true, page: pageParam, pageSize: 16 }, sort: 'name' };
+    const { data: { data, meta: { pagination: { page, total, pageSize } } } }: any = await axios
+      .get(routes.UNIVERSITIES, { params: queryParams });
+    const nextPage: number = await page + 1;
+    const allPages: number = Math.trunc(total / pageSize);
 
-    return data;
+    return { response: { data, meta: { nextPage, allPages } } };
   } catch {
-    return null;
+    return { response: null };
   }
 };
 

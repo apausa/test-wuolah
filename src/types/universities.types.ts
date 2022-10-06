@@ -20,10 +20,12 @@ export interface IQueryParams {
 export interface IResponse {
   data: IUniversity[],
   meta: {
-    page: number;
-    pageSize: number;
-    pageCount: number;
-    total?: number;
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total?: number;
+    }
   }
 }
 
