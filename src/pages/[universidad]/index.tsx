@@ -4,15 +4,27 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from 'next/types';
-
+import Image from 'next/image';
 import React from 'react';
-import { University } from '../../services/universidades/universities.types';
-import getUniversity from '../../services/universidades/university/university.service';
-import { IGetUniversity } from '../../services/universidades/university/university.types';
 
-const UniversidadPage: NextPage = ({ data }: any): any => (
+// Types
+import { IUniversity } from '../../types/universities.types';
+
+// Services
+import getUniversity from '../../services/university.service';
+
+const UniversidadPage: NextPage = ({ name, shortName, logoUrl }: any): any => ( // @ todo
   <main>
-    <pre>{data}</pre>
+    <div>
+      <p>{name}</p>
+      <p>{shortName}</p>
+      <Image
+        src={logoUrl}
+        // layout="fill"
+        width="100"
+        height="100"
+      />
+    </div>
   </main>
 );
 
@@ -21,8 +33,8 @@ export default UniversidadPage;
 export const getStaticPaths: GetStaticPaths = async () => ({ paths: [], fallback: 'blocking' });
 
 export const getStaticProps: GetStaticProps = async ({ params })
-: Promise<GetStaticPropsResult<University>> => {
-  const { data }: IGetUniversity = await getUniversity(params?.universidad);
+: Promise<GetStaticPropsResult<IUniversity>> => {
+  const data: IUniversity | null = await getUniversity(params?.universidad);
   if (!data) { return { notFound: true }; }
 
   return { props: data };

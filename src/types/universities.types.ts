@@ -1,10 +1,10 @@
-export interface Pagination {
+export interface IPagination {
   withCount?: boolean;
   page?: number;
   pageSize?: number;
 }
 
-export interface University {
+export interface IUniversity {
   id: number;
   slug: string;
   name: string;
@@ -12,13 +12,13 @@ export interface University {
   logoUrl: string;
 }
 
-export interface QueryParams {
-  pagination?: Pagination;
+export interface IQueryParams {
+  pagination?: IPagination;
   sort?: 'name' | 'id';
 }
 
 export interface IResponse {
-  data: University[],
+  data: IUniversity[],
   meta: {
     page: number;
     pageSize: number;
@@ -29,7 +29,7 @@ export interface IResponse {
 
 export interface IServiceResponse {
   success: boolean,
-  data: University[],
+  data: IUniversity[],
 }
 
 export interface IRedirect {
@@ -37,5 +37,5 @@ export interface IRedirect {
 }
 
 export interface IProps {
-  universities: University[]
+  universities: IUniversity[]
 }

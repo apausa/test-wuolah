@@ -1,26 +1,30 @@
+import React from 'react';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPropsResult, NextPage } from 'next/types';
-import React from 'react';
 import Image from 'next/image';
 
-import getUniversities from '../services/universidades/universities.service';
-import { University } from '../services/universidades/universities.types';
+// Services
+import getUniversities from '../services/universities.service';
 
-const UniversidadesPage: NextPage = ({ data }: any): any => (
+// Types
+import { IUniversity } from '../types/universities.types';
+
+const UniversidadesPage: NextPage = ({ data }: any): any => ( // @todo
   <main>
     <ul>
       {data.map(({
-        id, name, slug, logoUrl,
-      }: University) => (
+        id, name, slug, logoUrl, shortName,
+      }: IUniversity) => (
         <li key={id}>
           <Link href={`/${encodeURIComponent(slug)}`}>
             <div>
-              <a>{name}</a>
+              <p>{name}</p>
+              <p>{shortName}</p>
               <Image
                 src={logoUrl}
                   // layout="fill"
-                width="10"
-                height="10"
+                width="100"
+                height="100"
               />
             </div>
           </Link>
@@ -33,8 +37,8 @@ const UniversidadesPage: NextPage = ({ data }: any): any => (
 export default UniversidadesPage;
 
 export const getStaticProps: GetStaticProps = async ()
-: Promise<GetStaticPropsResult< University[]>> => {
-  const data: University[] | null = await getUniversities();
+: Promise<GetStaticPropsResult< IUniversity[]>> => {
+  const data: IUniversity[] | null = await getUniversities();
   if (!data) { return { notFound: true }; }
 
   return { props: data };
