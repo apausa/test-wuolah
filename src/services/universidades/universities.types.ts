@@ -17,7 +17,7 @@ export interface QueryParams {
   sort?: 'name' | 'id';
 }
 
-export interface Response {
+export interface IResponse {
   data: University[],
   meta: {
     page: number;
@@ -25,4 +25,17 @@ export interface Response {
     pageCount: number;
     total?: number;
   }
+}
+
+export interface IServiceResponse {
+  success: boolean,
+  data: University[],
+}
+
+export interface IRedirect {
+  redirect: { destination: string; };
+}
+
+export interface IProps {
+  universities: University[]
 }

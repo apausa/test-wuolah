@@ -1,3 +1,1 @@
-export default {
-  UNIVERSITIES: 'https://www.api.wuolah.com/v2/universities',
-};
+export default { UNIVERSITIES: 'https://api.wuolah.com/v2/universities' };
