@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   basePath: '/universidades',
   images: {
-    domains: ['wuolah-public.s3.eu-west-1.amazonaws.com'],
+    domains: ['s3-eu-west-1.amazonaws.com', 'wuolah-public.s3.eu-west-1.amazonaws.com'],
   },
 };
 

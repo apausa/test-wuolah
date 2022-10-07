@@ -1,63 +1,71 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query';
+import { QueryFunctionContext, useInfiniteQuery, UseInfiniteQueryResult } from '@tanstack/react-query';
 
-// Types
 import { GetStaticProps, GetStaticPropsResult, NextPage } from 'next/types';
-import { IUniversity } from '../types/universities.types';
-
-// Services
+import {
+  Heading, Text, Spinner, VStack, Box, HStack, StackDivider, Center,
+} from '@chakra-ui/react';
+import { IGetUniversities, IUniversity, IUseInfinityQueryData } from '../types/universities.types';
 import getUniversities from '../services/universities.service';
 
-const UniversidadesPage: NextPage = ({ response }: any): any => {
-  const { data, hasNextPage, fetchNextPage }: any = useInfiniteQuery(
+const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
+  const {
+    data, hasNextPage, fetchNextPage, isFetchingNextPage,
+  }
+  : UseInfiniteQueryResult<IUseInfinityQueryData> = useInfiniteQuery(
     ['getUniversities'],
-    ({ pageParam }: QueryFunctionContext): any => ((pageParam === null)
-      // To stop at the end
-      ? ({ response: { data: [], meta: { nextPage: 47, currentPage: 47 } } })
+    ({ pageParam }: QueryFunctionContext)
+    : Promise<IGetUniversities> | IGetUniversities => ((pageParam === null)
+      ? ({ response: { data: [], meta: { nextPage: 47, allPages: 47 } } })
       : getUniversities(pageParam)),
     {
       initialData: (): any => ({ pages: [response] }),
       getNextPageParam: (
-        { response: { meta: { nextPage, allPages } } },
-      ) => ((nextPage < allPages) ? nextPage : null),
+        { response: { meta: { nextPage, allPages } } }: any,
+      ): number | null => ((nextPage < allPages) ? nextPage : null),
     },
   );
 
-  const onScroll = async (event: any) => {
-    const { scrollHeight, scrollTop, clientHeight } = event.target.scrollingElement;
+  const onScroll = async (event: any): Promise<void> => {
+    const { target: { scrollingElement: { scrollHeight, scrollTop, clientHeight } } } = event;
     if ((clientHeight + scrollTop === scrollHeight) && hasNextPage) await fetchNextPage();
   };
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     document.addEventListener('scroll', onScroll);
     return () => { document.removeEventListener('scroll', onScroll); };
   }, []);
 
   return (
     <main>
-      <ul>
-        {data.pages.map((page: any) => (
-          page.response.data.map(({
-            id, name, slug, logoUrl, shortName,
-          }: IUniversity) => (
-            <li key={id}>
-              <Link href={`/${encodeURIComponent(slug)}`}>
-                <div>
-                  <p>{name}</p>
-                  <p>{shortName}</p>
-                  <Image
-                    alt={shortName}
-                    src={logoUrl}
-                    width="100"
-                    height="100"
-                  />
-                </div>
-              </Link>
-            </li>
-          ))))}
-      </ul>
+      <Center>
+        <VStack mt="4" align="flex-start" spacing="4" divider={<StackDivider />} width="m">
+          {data!.pages.map((page: any) => (
+            page.response.data.map(({
+              name, slug, logoUrl, shortName,
+            }: IUniversity) => (
+              <Box boxSize="m">
+                <Link href={`/${encodeURIComponent(slug)}`}>
+                  <HStack>
+                    <Image
+                      alt={shortName}
+                      src={logoUrl}
+                      width="100"
+                      height="100"
+                    />
+                    <VStack ml="4" align="flex-start">
+                      <Heading fontSize="xl">{name}</Heading>
+                      <Text fontSize="xl">{shortName}</Text>
+                    </VStack>
+                  </HStack>
+                </Link>
+              </Box>
+            ))))}
+        </VStack>
+        {(isFetchingNextPage) ? (<Spinner />) : (<div />)}
+      </Center>
     </main>
   );
 };
@@ -65,8 +73,8 @@ const UniversidadesPage: NextPage = ({ response }: any): any => {
 export default UniversidadesPage;
 
 export const getStaticProps: GetStaticProps = async ()
-: Promise<GetStaticPropsResult<any>> => {
-  const { response }: any = await getUniversities(0);
-  if (!response) { return { notFound: true }; }
-  return { props: { response: { response } } };
+: Promise<GetStaticPropsResult<{ response: IGetUniversities }>> => {
+  const { response }: IGetUniversities = await getUniversities(0);
+
+  return (!response) ? ({ notFound: true }) : ({ props: { response: { response } } });
 };

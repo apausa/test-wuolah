@@ -19,14 +19,26 @@ export interface IQueryParams {
 
 export interface IResponse {
   data: IUniversity[],
-  meta: {
+  meta?: {
     pagination: {
       page: number;
       pageSize: number;
       pageCount: number;
-      total?: number;
+      total: number;
     }
   }
+}
+
+export interface IGetUniversities {
+  response: IGetUniversitiesResponse | null
+}
+
+export interface IGetUniversitiesResponse {
+  meta: {
+    nextPage: number,
+    allPages: number
+  }
+  data: IUniversity[],
 }
 
 export interface IServiceResponse {
@@ -40,4 +52,8 @@ export interface IRedirect {
 
 export interface IProps {
   universities: IUniversity[]
+}
+
+export interface IUseInfinityQueryData {
+  pages: IGetUniversities[]
 }

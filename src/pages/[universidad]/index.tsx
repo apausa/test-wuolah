@@ -8,24 +8,34 @@ import Image from 'next/image';
 import React from 'react';
 
 // Types
+import {
+  Heading, HStack, VStack, Text, Center, Box,
+} from '@chakra-ui/react';
 import { IUniversity } from '../../types/universities.types';
 
 // Services
 import getUniversity from '../../services/university.service';
 
-const UniversidadPage: NextPage = ({ name, shortName, logoUrl }: any): any => ( // @ todo
+const UniversidadPage: NextPage<IUniversity> = ({ name, shortName, logoUrl }): any => (
   <main>
-    <div>
-      <p>{name}</p>
-      <p>{shortName}</p>
-      <Image
-        src={logoUrl}
-        // layout="fill"
-        width="100"
-        height="100"
-      />
-    </div>
+    <Center>
+      <Box boxSize="m">
+        <HStack mt="4" align="flex-start" spacing="4" width="m">
+          <Image
+            alt={shortName}
+            src={logoUrl}
+            width="100"
+            height="100"
+          />
+          <VStack ml="4" align="flex-start">
+            <Heading fontSize="xl">{name}</Heading>
+            <Text fontSize="xl">{shortName}</Text>
+          </VStack>
+        </HStack>
+      </Box>
+    </Center>
   </main>
+
 );
 
 export default UniversidadPage;
