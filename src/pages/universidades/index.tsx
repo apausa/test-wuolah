@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { QueryFunctionContext, useInfiniteQuery, UseInfiniteQueryResult } from '@tanstack/react-query';
-import { GetStaticProps, GetStaticPropsResult, NextPage } from 'next/types';
+import { GetServerSideProps, GetStaticPropsResult, NextPage } from 'next/types';
 import {
   Heading, Text, Spinner, VStack, Box, HStack, StackDivider, Center,
 } from '@chakra-ui/react';
@@ -41,7 +41,7 @@ const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
   return (
     <main>
       <Center>
-        <VStack mt="4" align="flex-start" spacing="4" divider={<StackDivider />} width="m">
+        <VStack mt="4" pb="8" align="flex-start" spacing="4" divider={<StackDivider />} width="m">
           {data!.pages.map((page: any) => (
             page.response.data.map(({
               name, slug, logoUrl, shortName,
@@ -63,7 +63,7 @@ const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
                 </Link>
               </Box>
             ))))}
-          {(isFetchingNextPage) ? (<Spinner pl="4" pb="8" size="xl" />) : (<div />)}
+          {(isFetchingNextPage) ? (<Spinner pl="4" size="xl" />) : (<div />)}
         </VStack>
       </Center>
     </main>
@@ -72,7 +72,7 @@ const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
 
 export default UniversidadesPage;
 
-export const getStaticProps: GetStaticProps = async ()
+export const getServerSideProps: GetServerSideProps = async ()
 : Promise<GetStaticPropsResult<{ response: IGetUniversities }>> => {
   const { response }: IGetUniversities = await getUniversities(0);
 

@@ -1,9 +1,4 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from 'next/types';
+import { GetServerSideProps, GetStaticPropsResult, NextPage } from 'next/types';
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
@@ -47,9 +42,7 @@ const UniversidadPage: NextPage<IUniversity> = ({
 
 export default UniversidadPage;
 
-export const getStaticPaths: GetStaticPaths = async () => ({ paths: [], fallback: 'blocking' });
-
-export const getStaticProps: GetStaticProps = async ({ params })
+export const getServerSideProps: GetServerSideProps = async ({ params })
 : Promise<GetStaticPropsResult<IUniversity>> => {
   const data: IUniversity | null = await getUniversity(params?.universidad);
   if (!data) { return { notFound: true }; }
