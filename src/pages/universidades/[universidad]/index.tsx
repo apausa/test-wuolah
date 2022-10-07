@@ -6,10 +6,11 @@ import {
 } from 'next/types';
 import Image from 'next/image';
 import React from 'react';
+import Link from 'next/link';
 
 // Types
 import {
-  Heading, HStack, VStack, Text, Center, Box,
+  Heading, HStack, VStack, Text, Center, Box, Button,
 } from '@chakra-ui/react';
 import { IUniversity } from '../../../types/universities.types';
 
@@ -35,6 +36,11 @@ const UniversidadPage: NextPage<IUniversity> = ({
           </VStack>
         </HStack>
       </Box>
+    </Center>
+    <Center>
+      <Link href="/universidades/">
+        <Button colorScheme="gray" mt="8">Regresar</Button>
+      </Link>
     </Center>
   </main>
 );
