@@ -13,7 +13,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
       <Head>
         <title>Wuolah test</title>
         <meta name="description" content="Wuolah test" />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="white"
+        />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
       </Head>
       <>
         <Header />

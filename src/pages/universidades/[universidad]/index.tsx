@@ -16,13 +16,15 @@ import { IUniversity } from '../../../types/universities.types';
 // Services
 import getUniversity from '../../../services/university.service';
 
-const UniversidadPage: NextPage<IUniversity> = ({ name, shortName, logoUrl }): any => (
+const UniversidadPage: NextPage<IUniversity> = ({
+  name, shortName, logoUrl,
+}): any => (
   <main>
     <Center>
       <Box boxSize="m">
         <HStack mt="4" align="flex-start" spacing="4" width="m">
           <Image
-            alt={shortName}
+            alt="University logo"
             src={logoUrl}
             width="100"
             height="100"

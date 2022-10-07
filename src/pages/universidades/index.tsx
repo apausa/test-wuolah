@@ -50,7 +50,7 @@ const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
                 <Link href={`/universidades/${encodeURIComponent(slug)}`}>
                   <HStack>
                     <Image
-                      alt={shortName}
+                      alt="University logo"
                       src={logoUrl}
                       width="100"
                       height="100"
