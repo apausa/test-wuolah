@@ -2,7 +2,7 @@
 # Wuolah 🙂
 
 Woulah, prueba técnica de Frontend. 
-Deployeado en test-wuolah.vercel.app
+Deployeado en https://test-wuolah.vercel.app
 
 Directorio de universidades, con dos vistas: 
 - /universidades 
