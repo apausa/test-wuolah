@@ -2,9 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  basePath: '/universidades',
   images: {
     domains: ['s3-eu-west-1.amazonaws.com', 'wuolah-public.s3.eu-west-1.amazonaws.com'],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/universidades',
+        permanent: true,
+      },
+    ];
   },
 };
 

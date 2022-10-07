@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { QueryFunctionContext, useInfiniteQuery, UseInfiniteQueryResult } from '@tanstack/react-query';
-
 import { GetStaticProps, GetStaticPropsResult, NextPage } from 'next/types';
 import {
   Heading, Text, Spinner, VStack, Box, HStack, StackDivider, Center,
 } from '@chakra-ui/react';
-import { IGetUniversities, IUniversity, IUseInfinityQueryData } from '../types/universities.types';
-import getUniversities from '../services/universities.service';
+
+import { IGetUniversities, IUniversity, IUseInfinityQueryData } from '../../types/universities.types';
+import getUniversities from '../../services/universities.service';
 
 const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
   const {
@@ -47,7 +47,7 @@ const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
               name, slug, logoUrl, shortName,
             }: IUniversity) => (
               <Box boxSize="m">
-                <Link href={`/${encodeURIComponent(slug)}`}>
+                <Link href={`/universidades/${encodeURIComponent(slug)}`}>
                   <HStack>
                     <Image
                       alt={shortName}

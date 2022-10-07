@@ -11,10 +11,10 @@ import React from 'react';
 import {
   Heading, HStack, VStack, Text, Center, Box,
 } from '@chakra-ui/react';
-import { IUniversity } from '../../types/universities.types';
+import { IUniversity } from '../../../types/universities.types';
 
 // Services
-import getUniversity from '../../services/university.service';
+import getUniversity from '../../../services/university.service';
 
 const UniversidadPage: NextPage<IUniversity> = ({ name, shortName, logoUrl }): any => (
   <main>
