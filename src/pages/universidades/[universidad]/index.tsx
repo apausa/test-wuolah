@@ -35,7 +35,6 @@ const UniversidadPage: NextPage<IUniversity> = ({ name, shortName, logoUrl }): a
       </Box>
     </Center>
   </main>
-
 );
 
 export default UniversidadPage;

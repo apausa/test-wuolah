@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Head from 'next/head';
+import Header from '../components/Header';
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
         <meta name="description" content="Wuolah test" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <>
+        <Header />
+        <Component {...pageProps} />
+      </>
     </QueryClientProvider>
   </ChakraProvider>
 );
