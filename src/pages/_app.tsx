@@ -20,7 +20,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
-        <link rel="manifest" href="~/manifest.json" />
       </Head>
       <>
         <Header />
