@@ -63,8 +63,8 @@ const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
                 </Link>
               </Box>
             ))))}
+          {(isFetchingNextPage) ? (<Spinner />) : (<div />)}
         </VStack>
-        {(isFetchingNextPage) ? (<Spinner />) : (<div />)}
       </Center>
     </main>
   );
