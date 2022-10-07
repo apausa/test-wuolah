@@ -63,7 +63,7 @@ const UniversidadesPage: NextPage<IGetUniversities> = ({ response }) => {
                 </Link>
               </Box>
             ))))}
-          {(isFetchingNextPage) ? (<Spinner size="xl" />) : (<div />)}
+          {(isFetchingNextPage) ? (<Spinner pl="4" pb="8" size="xl" />) : (<div />)}
         </VStack>
       </Center>
     </main>
