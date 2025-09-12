@@ -1,14 +1,9 @@
 
-# Wuolah 🙂
-
-Woulah, prueba técnica de Frontend. 
-Deployeado en https://test-wuolah.vercel.app
+# University directories
 
 Directorio de universidades, con dos vistas: 
 - /universidades 
 - /universidades/:slugUniversity
-
-
 
 ## Lighthouse
 
@@ -16,14 +11,13 @@ Directorio de universidades, con dos vistas:
 - Accessibility: 100%
 - Best Practices: 92%
 - SEO: 100%
+
 ## Tech Stack 
 
 - Typescript
 - Next.js
 - Chakra UI
 - React Query
-
-
 
 ## API Reference
 
@@ -44,13 +38,13 @@ Directorio de universidades, con dos vistas:
 Clone the project
 
 ```bash
-  git clone https://github.com/apausa/test-wuolah
+  git clone https://github.com/apausa/universityDirectory
 ```
 
 Go to the project directory
 
 ```bash
-  cd test-wuolah
+  cd universityDirectory
 ```
 
 Install dependencies with yarn
@@ -64,7 +58,6 @@ Start the server
 ```bash
   yarn dev
 ```
-
 
 ## Acknowledgements
 
